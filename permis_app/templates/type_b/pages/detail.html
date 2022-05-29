@@ -1,0 +1,175 @@
+{% extends "type_b/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<!-- (Almost) A blank page -->
+<div class="card">
+  {% comment %} <div class="card-body">
+    <div class="table-responsive">
+      {% for x in detaill %}
+      <div class="row">
+        <div class="col-md-5 col-xxl-12">
+          <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+              <div class="new-arrivals-img-contnent">
+                <img class="img-fluid" src="{{x.NumeroRC.url}}" alt="">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-5 col-xxl-12">
+        <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+            <div class="new-arrivals-img-contnent">
+              <img class="img-fluid" src="{{x.NumeroCNSS.url}}" alt="">
+            </div>
+        </div>
+    </div>
+      
+      {% endfor %} {% endcomment %}
+      
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+        <section class="container mt-5">{% for x in dem %}
+        <div class="row gallery">
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Photo du passeport</h3></span>
+        <a href="{{x.expose.url}}">
+        <figure><img class="img-fluid img-thumbnail" src="{{x.expose.url}}" alt="Random Image"></figure>
+        </a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Image</h3></span>
+          <a href="{{x.photo.url}}">
+          <figure><img class="img-fluid img-thumbnail" src="{{x.photo.url}}" alt="Random Image"></figure>
+          </a>
+          </div>
+        </div>
+        </section>
+        {% endfor %}
+        </div>
+        </div>
+        
+        </div>
+      <table class="table table-striped mb-0 m-5">
+        {% for x in dem %}
+        <thead>
+          <tr>
+            
+            <th>Nationalité</th>
+            <th>Lieu de nassance</th>
+            <th>Caisse Nationale de Securité Sociale</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            
+            <td>{{x.Nationalite}}</td>
+            <td>{{x.lieu_nais}}</td>
+            <td>{{x.cnss}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Type de demande</th>
+            <th>Denomination</th>
+            <th>Siege</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td>{{x.TypeDemande}}</td>
+            <td>{{x.denomination}}</td>
+            <td>{{x.siege}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Numero NNI</th>
+            <th>Nom et Prenom</th>
+            <th>Numero du passeport</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            
+            <td>{{x.numIMM}}</td>
+            <td>{{x.nomPrenom}}</td>
+             <td>{{x.numPass}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Date d'expiration</th>
+            <th>G-mail</th>
+            <th>Numero du telephone</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+           
+            <td>{{x.dateExpPass}}</td>
+            <td>{{x.email}}</td>
+            <td>{{x.numTel}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Date de naissance</th>
+            <th>Description du poste</th>
+            <th>Type de permis</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            
+            <td>{{x.dateNaissance}}</td>
+            <td>{{x.descPoste}}</td>
+            <td>{{x.TypePermis}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-body">
+     {% comment %} <div class="card-body">
+    <a href="{% url 'incoherent' x.id_soc_id %}" class="btn light btn-success">Incoherent</a> {% endcomment %}
+    <button href="" id="addcat" class="btn light btn-success">Avis</button>
+  <button href="" id="backcat" class="btn light btn-danger">Anuller</button >
+  {% comment %}</div> {% endcomment %}
+  {% endfor %}
+  <div id="calegory">
+    <form action="{% url 'detaills' id_user v vd %}" method="POST">
+      {% csrf_token %}
+      Avis
+      <input type="text" class="form-control" name="msg" >
+  <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+</form>
+</div>				
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  $("#calegory").hide()
+  $("#backcat").hide()
+  $("#addcat").click(function(){
+    $("#calegory").show()
+    $("#backcat").show()
+  $("#addcat").hide()
+
+  });
+  $("#backcat").click(function(){
+    $("#calegory").hide()
+    $("#backcat").hide()
+  $("#addcat").show()
+
+  });
+</script>
+{% endblock javascripts %}

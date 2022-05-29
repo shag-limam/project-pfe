@@ -1,0 +1,43 @@
+{% extends "user_soc/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %} {% block content %}
+
+{% if test == True %}
+    <table class="table table-striped custom-table mb-0">
+        <thead>
+            <tr>
+                <th>Nom et Prenom</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Numero passport</th>
+                <th>Date de naissance</th>
+                <th>Nationalite</th>
+                <th>Poste</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in trvl %}
+            <tr>
+                <td>{{x.nomPrenom}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.numTel}}</td>
+                <td>{{x.numPass}}</td>
+                <td>{{x.dateNaissance}}</td>
+                <td>{{x.Nationalite}}</td>
+                <td>{{x.descPoste}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+<center><h1>Aucun travailleur</h1></center>
+{% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}

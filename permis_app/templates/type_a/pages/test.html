@@ -1,0 +1,176 @@
+{% extends "type_a/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<center><h3 class="text-primary">Direction stratégiques et politique de l'emploi</h3></center>
+<div class="page-body">
+        {% for msg in messages %}
+      <div class="alert alert-success" role="alert">
+        {{ msg }}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+        <!-- Documents card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks dark-primary-border">
+                <div class="card-block">
+                    <h5>demande societe</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-document-folder"></i>
+                        </li>
+                        <li class="text-right">
+                            {% if soc %}
+                                {{soc}}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Documents card end -->
+        <!-- New clients card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks warning-border">
+                <div class="card-block">
+                    <h5>societe valide</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-ui-user-group text-warning"></i>
+                        </li>
+                        <li class="text-right text-warning">
+                            {% if socv %}
+                                {{socv}}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- New clients card end -->
+        <!-- New files card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks success-border">
+                <div class="card-block">
+                    <h5>societe non valide</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-files text-success"></i>
+                        </li>
+                        <li class="text-right text-success">
+                            {% if socn %}
+                                {{socn}}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- New files card end -->
+        <!-- Open Project card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks">
+                <div class="card-block">
+                    <h5>demande permis</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-ui-folder text-primary"></i>
+                        </li>
+                        <li class="text-right text-primary">
+                            {% if dem %}
+                               {{dem}}
+                            {% else %}
+                                0
+                            {% endif %}
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% comment %} <div class="page-body">
+    <div class="row">
+        <!-- Documents card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks dark-primary-border">
+                <div class="card-block">
+                    <h5>demande societe</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-document-folder"></i>
+                        </li>
+                        <li class="text-right">
+                            {{soc}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Documents card end -->
+        <!-- New clients card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks warning-border">
+                <div class="card-block">
+                    <h5>societe valide</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-ui-user-group text-warning"></i>
+                        </li>
+                        <li class="text-right text-warning">
+                            {{socv}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- New clients card end -->
+        <!-- New files card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks success-border">
+                <div class="card-block">
+                    <h5>societe non valide</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-files text-success"></i>
+                        </li>
+                        <li class="text-right text-success">
+                            {{socn}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- New files card end -->
+        <!-- Open Project card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks">
+                <div class="card-block">
+                    <h5>Open Projects</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-ui-folder text-primary"></i>
+                        </li>
+                        <li class="text-right text-primary">
+                            169
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

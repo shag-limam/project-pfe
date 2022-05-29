@@ -1,0 +1,166 @@
+{% load static %}
+    <!-- ### $Topbar ### -->
+    <link href="/static/assets/static/fonts/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="/static/assets/static/fonts/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <!-- ### $Topbar ### -->
+    <div class="header navbar">
+      <div class="header-container">
+        <ul class="nav-left">
+          <li>
+            <a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);">
+              <!-- <i class="ti-menu"></i> -->
+              <i class="fas fa-bars"></i>
+
+            </a>
+          </li>
+          <li class="search-box">
+            <a class="search-toggle no-pdd-right" href="javascript:void(0);">
+              <!-- <i class="search-icon ti-search pdd-right-10"></i> -->
+              <!-- <i class="search-icon-close ti-close pdd-right-10"></i> -->
+              <i class="fas fa-search ti-search pdd-right-10"></i>
+
+            </a>
+          </li>
+          <li class="search-input">
+            <input class="form-control" type="text" placeholder="Search...">
+          </li>
+        </ul>
+        <ul class="nav-right">
+          <li class="notifications dropdown">
+            <span class="counter bgc-red">{{nb_ms}}</span>
+            <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+              <!-- <i class="ti-bell"></i> -->
+              <i class="far fa-bell "></i>
+
+            </a>
+
+            <ul class="dropdown-menu">
+              <li class="pX-20 pY-15 bdB">
+                <!-- <i class="ti-bell pR-10"></i> -->
+                <i class="fas fa-bell pR-10"></i>
+                <span class="fsz-sm fw-600 c-grey-900">Notifications</span>
+              </li>
+              <li>
+                <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
+                  <li>
+                    {% for x in ms %}
+                      {%if x.id_dem_id %}
+                    <a href="{% url 'detaill' x.id_soc x.id x.id_dem_id %}" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
+                      {% else %}
+                      <a href="{% url 'detaill' x.id_soc x.id "None" %}" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
+                        {% endif %}
+                      <div class="peer mR-15">
+                        <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
+                      </div>
+                      <div class="peer peer-greed">
+                        <span>
+                          <span class="fw-500">{{ x.sujet }}</span>
+                          <span class="c-grey-600"> a {{x.date.hour}}h {{x.date.minute}}m {{x.date.second}}s <span class="text-dark"></span>
+                          </span>
+                        </span>
+                        <p class="m-0">
+                          <small class="fsz-xs"> Le {{x.date.year }}/{{x.date.month }}/{{x.date.day }}</small>
+                        </p>
+                      </div>
+                    </a>
+                    {% endfor %}
+                  </li>
+                </ul>
+              </li>
+              <li class="pX-20 pY-15 ta-c bdT">
+                <span>
+                  <a href="" class="c-grey-600 cH-blue fsz-sm td-n">Afficher toutes les notifications<i class="ti-angle-right fsz-xs mL-10"></i></a>
+                </span>
+              </li>
+            </ul>
+          </li>
+          {% comment %} <li class="notifications dropdown">
+            <span class="counter bgc-blue">1</span>
+            <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+              <i class="ti-email"></i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li class="pX-20 pY-15 bdB">
+                <i class="ti-email pR-10"></i>
+                <span class="fsz-sm fw-600 c-grey-900">Emails</span>
+              </li>
+              <li>
+                <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
+                  <li>
+                    <a href="" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
+                      <div class="peer mR-15">
+                        <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
+                      </div>
+                      <div class="peer peer-greed">
+                        <div>
+                          <div class="peers jc-sb fxw-nw mB-5">
+                            <div class="peer">
+                              <p class="fw-500 mB-0">John Doe</p>
+                            </div>
+                            <div class="peer">
+                              <small class="fsz-xs">il y a 5 minutes</small>
+                            </div>
+                          </div>
+                          <span class="c-grey-600 fsz-sm">
+                            Vous souhaitez créer votre propre générateur de données personnalisé pour votre application...
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="pX-20 pY-15 ta-c bdT">
+                <span>
+                  <a href="/email.html" class="c-grey-600 cH-blue fsz-sm td-n">Afficher tous les e-mails <i class="fs-xs ti-angle-right mL-10"></i></a>
+                </span>
+              </li>
+            </ul>
+          </li> {% endcomment %}
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+              <div class="peer mR-10">
+                {%  if ph %}
+                <img class="w-2r bdrs-50p" src="{{ph.url}}" alt="">
+              {% else %}
+                <img class="w-2r bdrs-50p" src="/static/assets/static/images/logo.png" alt="">
+              {% endif %}
+              </div>
+              <div class="peer">
+                <span class="fsz-sm c-grey-900">
+                  {% comment %} {{ request.user.user }} {% endcomment %}
+                </span>
+              </div>
+            </a>
+            <ul class="dropdown-menu fsz-sm">
+              <li>
+                <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                  <i class="fa fa-gear mR-10"></i>
+                  <span>Paramètre</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'profile' %}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                  <i class="fa fa-user mR-10"></i>
+                  <span>Profil</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'hystorique' %}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                  <i class="fa fa-history mR-10"></i>
+                  <span>Hystorique</span>
+                </a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                 <a href="{% url 'logout' %}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"> 
+                  <i class="fa fa-power-off mR-10"></i>
+                  <span>Se Déconnecter</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>

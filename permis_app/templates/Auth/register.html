@@ -1,0 +1,107 @@
+{% extends "type_a/layouts/base-fullscreen.html" %} {% block title %} Register
+{% endblock title %}
+ {% block stylesheets %}
+ {% comment %} <link href="/static/assets/reges/bootstrapp.min.css" rel="stylesheet"> {% endcomment %}
+{% endblock stylesheets %} 
+{% block content %}
+<style>
+  .error{
+    color: red;
+      font-style: italic;
+  }
+</style>
+<div class="card-body">
+  <h3 class="fw-300 c-grey-900 mB-10 mT-0">
+    <center>- S'inscrire Societe</center>
+  </h3>
+
+  {% if msg %}
+  <h4 class="fw-300 c-grey-900 mB-40">{{ msg | safe }}</h4>
+  {% else %} {% endif %}
+
+  <form id="registration" method="POST" enctype="multipart/form-data" action="{% url 'register' %}">
+    <div class="basic-form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-header">
+            <h4 class="card-title">Information du Sociéte</h4>
+            {% csrf_token %}
+            {% comment %} <input type = "text" class = "form-control" value='{{Societe.Nom}}'  name = "Nom" placeholder = "Nom"/> {% endcomment %}
+              {{Societe.Nom.label}}
+              {{Societe.Nom}}
+              <br>
+              {{Societe.NumeroRC.label}}
+              {{Societe.NumeroRC}}
+              <br>
+              {{Societe.NumeroCNSS.label}}
+              {{Societe.NumeroCNSS}}
+              <br>
+              {{Societe.region.label}}
+              {{Societe.region}}
+              <br>
+              {{Societe.nbreEmployee.label}}
+              {{Societe.nbreEmployee}}
+              <br>
+              {{Societe.secteurActivite.label}}
+              {{Societe.secteurActivite}}
+              <br>
+              {{Societe.FormeJuridique.label}}
+              {{Societe.FormeJuridique}}
+              <br>
+              {{Societe.adresse.label}}
+              {{Societe.adresse}}
+              <br>
+              {{Societe.gmail.label}}
+              {{Societe.gmail}}
+              <br>
+              {{Societe.contact.label}}
+              {{Societe.contact}}
+          </div>
+        </div>
+        <div class="col-sm-6 mt-2 mt-sm-0">
+          <div class="card-header">
+            <h4 class="card-title">Information de l'utulisateur</h4>
+            
+            {{User.username.label}}
+              {{User.username}}
+              <br>
+              {{User.email.label}}
+              {{User.email}}
+              <br>
+              {{User.photo.label}}
+              {{User.photo}}
+              <br>
+              {{User.password1.label}}
+              {{User.password1}}
+              <br>
+              {{User.password2.label}}
+              {{User.password2}}
+          </div>
+          <br />
+
+          <div class="form-group">
+            <button type="submit" name="register" class="btn btn-primary">
+              Envoyer
+            </button>
+
+            &nbsp; &nbsp;
+            <span class="text-small font-weight-semibold"
+              >avez-vous un compte?</span
+            >
+            <a href="{% url 'login' %}" class="text-black text-small">Connexion</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock content %}
+{% block javascripts %} 
+<script type="text/javascript" src="/static/assets/reges/jquery.min.js"></script>
+<script type="text/javascript" src="/static/assets/reges/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/assets/reges/bootstrapp.min.js"></script>
+<script type="text/javascript" src="/static/assets/reges/register.js"></script>
+{% endblock javascripts %}
+
+    

@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Bienvenue sur Permis de travaill
+
+Bonjour {{ name }}
+
+Veuillez confirmer votre email en cliquant sur le lien ci-dessous
+
+ lien de confiration :   https//{{domain}}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

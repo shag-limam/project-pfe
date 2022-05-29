@@ -1,0 +1,74 @@
+{% extends "type_a/layouts/base-fullscreen.html" %} {% block title %} Register
+{% endblock title %}
+ {% block stylesheets %}
+ <link href="/static/assets/reges/bootstrapp.min.css" rel="stylesheet">
+{% endblock stylesheets %} 
+{% block content %}
+<style>
+  .error{
+    color: red;
+      font-style: italic;
+  }
+</style>
+	<div class = "container">
+    	<div class = "col-md-6 col-md-offset-3">
+        	<div class = "panel panel-primary">
+            	<div class = "panel-heading">
+                	Registration
+                </div>
+                <div class = "panel-body">
+                	<form id = "registration">
+                    	<input type = "text" class = "form-control" name = "username" placeholder = "Username"/>
+                        <br/>
+                        <input type = "text" class = "form-control" name = "email" placeholder = "Email"/>
+                        <br/>
+                        <input type = "password" class = "form-control" name = "password" placeholder = "Password" id = "password"/>
+                        <br/>
+                        <input type = "password" class = "form-control" name = "confirm" placeholder = "Confirm Password"/>
+                        <br/>
+                        <input type = "text" class = "form-control" name = "fname" placeholder = "First Name"/>
+                        <br/>
+                        <input type = "text" class = "form-control" name = "lname" placeholder = "Last Name"/>
+                        <br/>
+                        <div class = "gender">
+							<label class="radio-inline"><input type="radio" name="gender" class = "form-contorl"/>Male</label>
+							<label class="radio-inline"><input type="radio" name="gender" class = "form-contorl"/>Female</label>       
+                        </div>
+                        <br/>
+                        
+                        <div class = "hobbies">
+                        	<label class="checkbox-inline"><input type="checkbox" name = "hobbies">Cricket</label>
+							<label class="checkbox-inline"><input type="checkbox" name = "hobbies">Football</label>
+							<label class="checkbox-inline"><input type="checkbox" name = "hobbies">Hockey</label>
+                        	<label class="checkbox-inline"><input type="checkbox" name = "hobbies">Tennis</label>
+                        </div>
+                        <br/>
+                        <select class = "form-control" name = "country">
+                        	<option value="0" selected="" disabled="">--SELECT--</option>
+                            <option>India</option>
+                            <option>Australia</option>
+                            <option>Japan</option>
+                            <option>China</option>
+                            <option>South Africa</option>
+                        </select>
+                        <br/>
+                        <textarea class = "form-control" name = "address" placeholder="Address"></textarea>
+                        <br/>
+                        <button type = "submit" class = "btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+{% block javascripts %} 
+<script type="text/javascript" src="/static/assets/reges/jquery.min.js"></script>
+<script type="text/javascript" src="/static/assets/reges/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/assets/reges/bootstrapp.min.js"></script>
+<script type="text/javascript" src="/static/assets/reges/register.js"></script>
+
+{% endblock javascripts %}
+
+    

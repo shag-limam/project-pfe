@@ -1,0 +1,23 @@
+{% extends "user_soc/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %} {% block content %}
+
+
+<!-- (Almost) A blank page -->
+<center><h3 class="text-primary">Direction génerale de l'emploi</h3></center>
+
+<div  class="card-body" class="align-items left">
+    {% for msg in messages %}
+  <div class="alert alert-success" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

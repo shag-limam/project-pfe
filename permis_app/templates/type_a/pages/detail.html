@@ -1,0 +1,190 @@
+{% extends "type_a/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+ {% block content %}
+<!-- (Almost) A blank page -->
+<div class="card">
+  {% if mes == 'Non valider' %}
+  <center><h2 class="bg-danger text-white">{{mes}}</h2></center>
+  {% else %}
+<center><h2 class="bg-success text-white ">{{mes}}</h2></center>
+{% endif %}
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+        <section class="container mt-5">{% for x in dem %}
+        <div class="row gallery">
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Photo du passeport</h3></span>
+        <a href="{{x.expose.url}}">
+        <figure><img class="img-fluid img-thumbnail" src="{{x.expose.url}}" alt="Random Image"></figure>
+        </a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Image</h3></span>
+          <a href="{{x.photo.url}}">
+          <figure><img class="img-fluid img-thumbnail" src="{{x.photo.url}}" alt="Random Image"></figure>
+          </a>
+          </div>
+        </div>
+        </section>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+      <table class="table table-striped mb-0 m-5">
+        {% for x in dem %}
+        <thead>
+          <tr>
+            <th>Type de demande</th>
+            <th>Denomination</th>
+            <th>Siege</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{x.TypeDemande}}</td>
+            <td>{{x.denomination}}</td>
+            <td>{{x.siege}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>Numero NNI</th>
+            <th>Nom et Prenom</th>
+            <th>Numero du passeport</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>{{x.numIMM}}</td>
+            <td>{{x.nomPrenom}}</td>
+             <td>{{x.numPass}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>Date d'expiration</th>
+            <th>G-mail</th>
+            <th>Numero du telephone</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>{{x.dateExpPass}}</td>
+            <td>{{x.email}}</td>
+            <td>{{x.numTel}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>Date de naissance</th>
+            <th>Description du poste</th>
+            <th>Type de permis</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>{{x.dateNaissance}}</td>
+            <td>{{x.descPoste}}</td>
+            <td>{{x.TypePermis}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+
+      
+        <button href="" id="addcat1" class="btn light btn-danger">Incoherent</button>
+        <button href="" id="backcat1" class="btn light btn-danger">Anuller</button >
+        <a href="" class="btn light btn-success"  data-placement="top" title="Supprimer" data-rel="tooltip"  data-target="#deleteModal" data-toggle="modal">
+          Exploiter
+        </a>
+       
+       
+        <button href="" id="addcat" class="btn light btn-danger">Incomplet</button>
+        <button href="" id="backcat" class="btn light btn-danger">Anuller</button >
+          <div id="calegory">
+            <form action="{% url 'detaill' id_user v vd %}" method="POST">
+              {% csrf_token %}
+              Incomplet
+              <input type="text" class="form-control" name="msg" >
+          <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+        </form>
+        </div>  
+
+        <div id="calegory1">
+          <form action="{% url 'incoherent' id_user v vd %}" method="POST">
+            {% csrf_token %}
+            Incoherent
+            <input type="text" class="form-control" name="msg" >
+        <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+      </form>
+      </div>   
+</div>					
+</div>
+</div>
+
+<div class="modal modal-danjer fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Demande</h4>
+      </div>
+          <div class="modal-body " >
+                <p class="text-center">
+                  Voulez vous exploiter une demande de permis <span class="login-delete"></span> ?
+                </p>
+                  <input type="hidden" name="id"  class="id-delete">
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" name="register" class="btn btn-success" data-dismiss="modal">Non</button>            
+          <a href="{% url 'exploiter' x.id_soc_id x.id %}" class="btn light btn-danger">Oui</a>
+          </div>
+          {% endfor %}
+
+    </div>
+  </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script type="text/javascript" src="/static/assets/reges/jquery.min.js"></script>
+
+<script type="text/javascript">
+  $("#calegory").hide()
+  $("#backcat").hide()
+  $("#addcat").click(function(){
+    $("#calegory").show()
+    $("#backcat").show()
+  $("#addcat").hide()
+
+  });
+  $("#backcat").click(function(){
+    $("#calegory").hide()
+    $("#backcat").hide()
+  $("#addcat").show()
+
+  });
+
+
+  $("#calegory1").hide()
+  $("#backcat1").hide()
+  $("#addcat1").click(function(){
+    $("#calegory1").show()
+    $("#backcat1").show()
+  $("#addcat1").hide()
+
+  });
+  $("#backcat1").click(function(){
+    $("#calegory1").hide()
+    $("#backcat1").hide()
+  $("#addcat1").show()
+
+  });
+</script>
+{% endblock javascripts %}

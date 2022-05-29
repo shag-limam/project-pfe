@@ -1,0 +1,185 @@
+{% extends "type_a/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+ {% block content %}
+ <style>
+  #container {
+    display: none;
+  }
+</style>
+<!-- (Almost) A blank page -->
+<div class="card">
+
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+        <section class="container mt-5">{% for x in dem %}
+        <div class="row gallery">
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Photo du passeport</h3></span>
+        <a href="{{x.expose.url}}">
+        <figure><img class="img-fluid img-thumbnail" src="{{x.expose.url}}" alt="Random Image"></figure>
+        </a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Image</h3></span>
+          <a href="{{x.photo.url}}">
+          <figure><img class="img-fluid img-thumbnail" src="{{x.photo.url}}" alt="Random Image"></figure>
+          </a>
+          </div>
+        </div>
+        </section>
+        {% endfor %}
+        </div>
+        </div>
+        
+        </div>
+      <table class="table table-striped mb-0 m-5">
+        {% for x in dem %}
+        <thead>
+          <tr>
+            
+            <th>Type de demande</th>
+            <th>Denomination</th>
+            <th>Siege</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td>{{x.TypeDemande}}</td>
+            <td>{{x.denomination}}</td>
+            <td>{{x.siege}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Numero NNI</th>
+            <th>Nom et Prenom</th>
+            <th>Numero du passeport</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            
+            <td>{{x.numIMM}}</td>
+            <td>{{x.nomPrenom}}</td>
+             <td>{{x.numPass}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Date d'expiration</th>
+            <th>G-mail</th>
+            <th>Numero du telephone</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+           
+            <td>{{x.dateExpPass}}</td>
+            <td>{{x.email}}</td>
+            <td>{{x.numTel}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Date de naissance</th>
+            <th>Description du poste</th>
+            <th>Type de permis</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            
+            <td>{{x.dateNaissance}}</td>
+            <td>{{x.descPoste}}</td>
+            <td>{{x.TypePermis}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            
+            <th>Etat de retrait</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            
+            <td>{{x.etatRetrait}}</td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+
+    <table class="card-body" class="table table-striped mb-0 m-5">
+      <tbody>
+      <tr>
+        
+        <td>
+          <div class="card-body">
+            <a href="{% url 'incoherent' x.id_soc_id %}" class="btn light btn-success">Incoherent</a>
+
+        </td>
+        <td>
+          <div class="card-body">
+            <a href="{% url 'exploiter' x.id_soc_id x.id %}" class="btn light btn-danger">Exploiter</a>
+           
+        </td>
+        <td>
+        <td><button href="" id="show" class="btn light btn-danger" onclick="show()" >Incomplet</button>
+        </td>
+        <td>
+        <td> 
+
+          <div id="container">
+          <button href="" id="hide" class="btn light btn-danger" onclick="hide()">Retour</button >
+            <form id="calegory" id="hide" action="{% url 'detaill' id_user v vd %}" method="POST">
+              {% csrf_token %}
+              <input type="text" id="hide" class="form-control" name="msg" >
+          <button type="submit" id="hide" class="btn btn-primary btn-block"">Envoyer</button>
+        </form>
+        </div>   
+           </div></td>
+      </tr>
+    </tbody>
+    </table>
+    
+     {% endfor %}
+<!-- <form id="calegory" action="{% url 'detaill' id_user v vd %}" method="POST">
+{% csrf_token %}
+      <label>Incomplet</label>
+      <input type="text" class="form-control" name="msg"> 
+      <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+</form> -->
+</div>
+
+	
+						
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  var x = document.getElementById('container'); //تحديد الحاوية
+
+
+var b = document.getElementById('show'); // تحديد زر الاظهار
+function show() {
+  x.style.display = 'block'; // اظهار الحاوية
+  b.style.display = 'none'; //اخفاء زر الاظهار
+}
+function hide() {
+  x.style.display = 'none'; // اخفاء الحاوية
+  b.style.display = 'block'; // اظهار زر الاظهار
+}
+</script>
+{% endblock javascripts %}

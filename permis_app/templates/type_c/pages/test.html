@@ -1,0 +1,98 @@
+{% extends "type_c/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<!-- (Almost) A blank page -->
+<center><h3 class="text-primary">Direction génerale de l'emploi</h3></center>
+<div class="page-body">
+    <div class="row">
+        <!-- Documents card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks dark-primary-border">
+                <div class="card-block">
+                    <h5>Travailleurs</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-document-folder"></i>
+                        </li>
+                        <li class="text-right">
+                            {% if cpt %}
+                                {{cpt}}
+                            {% else %}
+                                0
+                            {% endif %}
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Documents card end -->
+        <!-- New clients card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks warning-border">
+                <div class="card-block">
+                    <h5>Travailleurs a permis renouveler</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-ui-user-group text-warning"></i>
+                        </li>
+                        <li class="text-right text-warning">
+                            {% if i %}
+                                {{i}}
+                            {% else %}
+                                0
+                            {% endif %}
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- New clients card end -->
+        <!-- New files card start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks success-border">
+                <div class="card-block">
+                    <h5>avis valider</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-files text-success"></i>
+                        </li>
+                        <li class="text-right text-success">
+                            {% if con2 %}
+                               {{con2}}
+                            {% else %}
+                                0
+                            {% endif %}
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- New files card end -->
+        <!-- Open Project card start -->
+        {% comment %} <div class="col-md-6 col-xl-3">
+            <div class="card client-blocks">
+                <div class="card-block">
+                    <h5>Open Projects</h5>
+                    <ul>
+                        <li>
+                            <i class="icofont icofont-ui-folder text-primary"></i>
+                        </li>
+                        <li class="text-right text-primary">
+                            169
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

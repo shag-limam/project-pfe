@@ -1,0 +1,148 @@
+{% extends "type_b/layouts/base-fullscreen.html" %}
+
+{% block title %} Register {% endblock title %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+     
+<div class="card-body">
+      
+        <h3 class="fw-300 c-grey-900 mB-10 mT-0">
+        <center>- Register Societe</center>
+ 
+        </h3>
+
+        {% if msg %}
+            <h4 class="fw-300 c-grey-900 mB-40">{{ msg | safe }}</h4>
+        {% else %}
+
+        {% endif %}
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            action="{% url 'register' %}"
+          >
+            <div class="basic-form">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card-header">
+                    <h4 class="card-title">Information Societe</h4>
+                    {% csrf_token %} {{Societe}}
+                  </div>
+                </div>
+                <div class="col-sm-6 mt-2 mt-sm-0">
+                  <div class="card-header">
+                    <h4 class="card-title">Information Utulisateur</h4>
+                    {{User}}
+                  </div>
+                  <br>
+                
+              
+            
+            <div class="form-group">
+              <button type="submit" name="register" class="btn btn-primary">Register</button> 
+  
+              &nbsp; &nbsp;
+              <span class="text-small font-weight-semibold">Have and account?</span>
+              <a href="{% url 'login' %}" class="text-black text-small">Login</a>    
+            </div></div></div></div>
+          </form>
+        
+          
+    </div>
+    
+    
+
+            
+            
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends "layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<!-- (Almost) A blank page -->
+
+<div class="col-xl-12 col-lg-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Ajouter Societe</h4>
+    </div>
+    <div class="card-body">
+      <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="{% url 'register' %}"
+      >
+        <div class="basic-form">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card-header">
+                <h4 class="card-title">Information Societe</h4>
+                {% csrf_token %} {{Societe}}
+              </div>
+            </div>
+            <div class="col-sm-6 mt-2 mt-sm-0">
+              <div class="card-header">
+                <h4 class="card-title">Information Utulisateur</h4>
+                {{User}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 mt-sm-0">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xl-6 col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Input Style</h4>
+      </div>
+      <div class="card-body">
+        <div class="basic-form">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">{{Societe}}</div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="basic-form">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">{{User}}</div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ {% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %} {% endcomment %}

@@ -1,0 +1,78 @@
+{% extends "user_soc/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %} {% block content %}
+
+<center><h3>Description : {{nt.description}}</h3></center>
+
+<div class="card-body">
+  {% comment %} {% if msg %}
+  <h4 class="fw-300 c-grey-900 mB-40">{{ msg | safe }}</h4>
+  {% else %} {% endif %} 
+  action="{% url 'registerr' %}"
+  {% endcomment %}
+  <div class="basic-form">
+    <form method="POST" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-header">
+            
+            {% csrf_token %} 
+            {{Dmande.TypeDemande.label}}
+            {{Dmande.TypeDemande}}
+            {{Dmande.denomination.label}}
+            {{Dmande.denomination}}
+            {{Dmande.siege.label}}
+            {{Dmande.siege}}
+            {{Dmande.numIMM.label}}
+            {{Dmande.numIMM}}
+            {{Dmande.nomPrenom.label}}
+            {{Dmande.nomPrenom}}
+            {{Dmande.Nationalite.label}}
+            {{Dmande.Nationalite}}
+            {{Dmande.lieu_nais.label}}
+            {{Dmande.lieu_nais}}
+            {{Dmande.cnss.label}}
+            {{Dmande.cnss}}
+            {{Dmande.numPass.label}}
+            {{Dmande.numPass}}
+            {{Dmande.dateExpPass.label}}
+            {{Dmande.dateExpPass}}
+            {{Dmande.email.label}}
+            {{Dmande.email}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-header">
+            
+            {{Dmande.numTel.label}}
+            {{Dmande.numTel}}
+            {{Dmande.dateNaissance.label}}
+            {{Dmande.dateNaissance}}
+            {{Dmande.descPoste.label}}
+            {{Dmande.descPoste}}
+            {{Dmande.expose.label}}
+            {{Dmande.expose}}
+            {{Dmande.photo.label}}
+            {{Dmande.photo}}
+            {{Dmande.TypePermis.label}}
+            {{Dmande.TypePermis}}
+            <br>
+            <br>
+
+            <button type="submit" class="btn btn-primary">
+              Demander
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

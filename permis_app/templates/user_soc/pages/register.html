@@ -1,0 +1,226 @@
+{% extends "user_soc/layouts/base.html" %} {% load static %} {% block title %}
+Blank Page {% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}
+<style>
+.error{
+  color: red;
+    font-style: italic;
+}</style>
+{% endblock stylesheets %} {% block content %}
+
+
+  {% comment %} <h3 class="fw-300 c-grey-900 mB-10 mT-0">
+    <center>{{b}}</center>
+  </h3>
+
+  {% if msg %}
+  <h4 class="fw-300 c-grey-900 mB-40">{{ msg | safe }}</h4>
+  {% else %} {% endif %}
+
+  <form
+    method="POST"
+    enctype="multipart/form-data"
+    action="{% url 'registerr' %}"
+  >
+    <div class="basic-form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-header">
+            <h4 class="card-title">{{b}}</h4>
+            {% csrf_token %} {{Dmande.TypeDemande}}
+
+
+          <div class="form-group">
+            <button type="submit" name="register" class="btn btn-primary">
+              Demander
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form> {% endcomment %}
+
+
+  <div class="card-body">
+    <h3 class="fw-300 c-grey-900 mB-10 mT-0">
+      <center>- Demande PERMIS </center>
+    </h3>
+  
+    {% if msg %}
+    <h4 class="fw-300 c-grey-900 mB-40">{{ msg | safe }}</h4>
+    {% else %} {% endif %}
+
+    <div class="col">
+      <label for="inputName" class="control-label">TYPE DEMANDE</label>
+      <select name="type_demande" class="form-control SlectBox" onclick="console.log($(this).val())"
+          onchange="console.log('change is firing')">
+          <!--placeholder-->
+          <option value="" selected disabled>   ~SELECT~  </option>
+          {% comment %} @foreach($Chauffeures as $itemss) {% endcomment %}
+          <option id="opn" value="N"> Nouvaux</option>
+          <option id="opr" value="{{id}}"> Renouveler</option>
+
+          {% comment %} <option value="{{ $itemss->id }}"> {{ $itemss->id }}</option> {% endcomment %}
+      {% comment %} @endforeach {% endcomment %}
+      </select>
+  </div>
+
+
+  <div id="oprr" class="col">
+    {% comment %} <label for="inputName" class="control-label">Bus corespon a ce chauffeur</label>
+    <select id="bus_id" name="bus_id" class="form-control SlectBox" onclick="console.log($(this).val())"
+    onchange="console.log('change is firing')">
+    </select> {% endcomment %}
+    <form method="POST" enctype="multipart/form-data" action="{% url 'voir' %}">
+      
+  {% csrf_token %} 
+    <label for="inputName" class="control-label">DEMANDE</label>
+    <select required name="op" class="form-control SlectBox" >
+        <!--placeholder-->
+        
+        <option value="" selected disabled>nom et prenom --- > numero passport </option>
+        {% comment %} @foreach($Chauffeures as $itemss) {% endcomment %}
+        {% for a in dem %}
+        <option value="{{a.id}}">{{a.nomPrenom}} --- > {{a.numPass}}</option>
+        {% endfor %}
+        {% comment %} <option value="{{ $itemss->id }}"> {{ $itemss->id }}</option> {% endcomment %}
+    {% comment %} @endforeach {% endcomment %}
+    </select>
+    
+  
+  <button type="submit" name="register" class="btn btn-primary">
+    Voire
+  </button>
+</form>
+</div>
+
+    <div id='opnn' class="basic-form">
+      <form id="registration" method="POST" enctype="multipart/form-data" action="{% url 'registerr' %}">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card-header">
+              {% csrf_token %} 
+                {{Dmande.denomination.label}}
+                {{Dmande.denomination}}
+                <br>
+                {{Dmande.siege.label}}
+                {{Dmande.siege}}
+                <br>
+                {{Dmande.numIMM.label}}
+                {{Dmande.numIMM}}
+                <br>
+                {{Dmande.nomPrenom.label}}
+                {{Dmande.nomPrenom}}
+                <br>
+                {{Dmande.Nationalite.label}}
+                {{Dmande.Nationalite}}
+                <br>
+                {{Dmande.lieu_nais.label}}
+                {{Dmande.lieu_nais}}
+                <br>
+                {{Dmande.cnss.label}}
+                {{Dmande.cnss}}
+                <br>
+                {{Dmande.numPass.label}}
+                {{Dmande.numPass}}
+                <br>
+                {{Dmande.dateExpPass.label}}
+                {{Dmande.dateExpPass}}
+                <br>
+                {{Dmande.email.label}}
+                {{Dmande.email}} 
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card-header">
+                
+                {{Dmande.numTel.label}}
+                {{Dmande.numTel}}
+                <br>
+                {{Dmande.dateNaissance.label}}
+                {{Dmande.dateNaissance}}
+                <br>
+                {{Dmande.descPoste.label}}
+                {{Dmande.descPoste}}
+                <br>
+                {{Dmande.expose.label}}
+                {{Dmande.expose}}
+                <br>
+                {{Dmande.photo.label}}
+                {{Dmande.photo}}
+                <br>
+                {{Dmande.TypePermis.label}}
+                {{Dmande.TypePermis}}
+              <br>
+              <br>
+              <a  class="btn btn-primary btn-xs btn-delete"  data-placement="top" title="Supprimer" data-rel="tooltip"  data-target="#deleteModal" data-toggle="modal">
+                Demander
+              </a>
+
+            </div>
+          </div>
+        </div>
+     
+    </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<div class="modal modal-danjer fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title text-center" id="myModalLabel">Demande</h4>
+    </div>
+        <div class="modal-body " >
+              <p class="text-center">
+                Voulez vous envoyer une demande de permis <span class="login-delete"></span> ?
+              </p>
+                <input type="hidden" name="id"  class="id-delete">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" name="register" class="btn btn-success" data-dismiss="modal">Non</button>
+          <button type="submit" class="btn btn-danger">Oui</button>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<!-- Specific Page JS goes HERE  -->
+ <script type="text/javascript" src="/static/assets/reges/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  $("#opnn").hide()
+  $("#oprr").hide()
+
+  $("#opn").click(function(){
+    $("#opnn").show()
+    $("#oprr").hide()
+  });
+
+  $("#opr").click(function(){
+    $("#oprr").show()
+    $("#opnn").hide()
+  }); 
+
+$('.ajax_datatable').DataTable({
+    "pageLength": 50
+});
+$(document).on('click', '.btn-delete', function() {
+    $('.login-delete').text($(this).data('title'));
+    $('.id-delete').val($(this).data('id'));
+});
+
+
+</script>
+{% endblock javascripts %}

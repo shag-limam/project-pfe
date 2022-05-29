@@ -1,0 +1,118 @@
+{% extends "type_a/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %} {% include 'includes/navigation.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<!-- (Almost) A blank page -->
+<div class="card">
+  {% comment %} <div class="card-body">
+    <div class="table-responsive">
+      {% for x in detaill %}
+      <div class="row">
+        <div class="col-md-5 col-xxl-12">
+          <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+              <div class="new-arrivals-img-contnent">
+                <img class="img-fluid" src="{{x.NumeroRC.url}}" alt="">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-5 col-xxl-12">
+        <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+            <div class="new-arrivals-img-contnent">
+              <img class="img-fluid" src="{{x.NumeroCNSS.url}}" alt="">
+            </div>
+        </div>
+    </div>
+      
+      {% endfor %} {% endcomment %}
+      
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+        <section class="container mt-5">{% for x in detaill %}
+        <div class="row gallery">
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Numero de declaration</h3></span>
+        <a href="{{x.NumeroCNSS.url}}">
+        <figure><img class="img-fluid img-thumbnail" src="{{x.NumeroCNSS.url}}" alt="Random Image"></figure>
+        </a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-xs-6 thumb">
+          <span><h3>Numero de Commerce</h3></span>
+          <a href="{{x.NumeroRC.url}}">
+          <figure><img class="img-fluid img-thumbnail" src="{{x.NumeroRC.url}}" alt="Random Image"></figure>
+          </a>
+          </div>
+        </div>
+        </section>
+        {% endfor %}
+        </div>
+        </div>
+        
+        </div>
+      <table class="table table-striped mb-0 m-5">
+        {% for x in detaill %}
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Région</th>
+            <th>Nombre d'employe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{x.Nom}}</td>
+            <td>{{x.region}}</td>
+            <td>{{x.nbreEmployee}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>Secteur d'activite</th>
+            <th>Forme Juridique</th>
+            <th>Adresse</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>{{x.secteurActivite}}</td>
+            <td>{{x.FormeJuridique}}</td>
+            <td>{{x.adresse}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>Gmail</th>
+            <th>Contact</th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>{{x.gmail}}</td>
+            <td>{{x.contact}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="card-body">
+    <a href="{% url 'valide' idt id_sc%}" class="btn light btn-success">Valider</a>
+     <a id="addcat" href="#" class="btn light btn-danger">incoherant</a> 
+  </div>
+<form id="calegory" action="#" method="POST">
+{% csrf_token %}
+      <label>Incomplet</label>
+      <input type="text" class="form-control" name="msg"> 
+      <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+</form>	
+</div>
+
+	
+						
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

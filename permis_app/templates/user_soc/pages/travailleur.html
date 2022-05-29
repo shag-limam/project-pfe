@@ -1,0 +1,73 @@
+{% extends "user_soc/layouts/base.html" %} {% load static %} {% block title %} Blank Page
+{% endblock title %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %} {% block content %}
+
+
+<table class="table table-striped custom-table mb-0">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Direction stratégiques et politique de l'emploi</th>
+            <th>Direction génerale du travail</th>
+            <th>Direction génerale de l'emploi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for x in status %}
+        <tr>
+            {% if x.statut == 'c' %}
+                <td>{{x.nomPrenom}}</td>
+                <td><i class="fas fa-check text-success"></i> </td>
+                <td><i class="fas fa-check text-success"></i> </td>
+                <td><i class="fas fa-check text-success"></i> </td>
+            {% elif x.statut == 'b' %}
+                <td>{{x.nomPrenom}}</td>
+                <td><i class="fas fa-check text-success"></i> </td>
+                <td><i class="fas fa-check text-success"></i> </td>
+                <td><i class="fas fa-times text-danger"></i> </td>
+            {% elif x.statut == 'a' %}
+                <td>{{x.nomPrenom}}</td>
+                <td><i class="fas fa-check text-success"></i> </td>
+                <td><i class="fas fa-times text-danger"></i> </td>
+                <td><i class="fas fa-times text-danger"></i> </td>
+            {% else %}
+                <td>{{x.nomPrenom}}</td>
+                <td><i class="fas fa-times text-danger"></i> </td>
+                <td><i class="fas fa-times text-danger"></i> </td>
+                <td><i class="fas fa-times text-danger"></i> </td>
+
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+
+<button id="show" onclick="show()">show detials</button>
+    <div id="container">
+       <input name="" type="text">
+      <button onclick="hide()">less detials</button>
+      <button>book</button>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    var x = document.getElementById('container'); //تحديد الحاوية
+    var b = document.getElementById('show'); // تحديد زر الاظهار
+    function show() {
+      x.style.display = 'block'; // اظهار الحاوية
+      b.style.display = 'none'; //اخفاء زر الاظهار
+    }
+    function hide() {
+      x.style.display = 'none'; // اخفاء الحاوية
+      b.style.display = 'block'; // اظهار زر الاظهار
+    }
+  </script>
+{% endblock javascripts %}
